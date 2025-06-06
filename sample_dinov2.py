@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 
-if __name__ == '__main__':            
+def main():            
     # check GPU 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
@@ -25,3 +25,6 @@ if __name__ == '__main__':
         features = model(image)
         dim = features.shape[1]                                
     print('dim = {}'.format(dim))            
+    
+    
+main()

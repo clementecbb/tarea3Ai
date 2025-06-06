@@ -18,12 +18,9 @@ def compute_map(sim, labels):
     
     for i in range(n):
         query_label = labels[i]
-        # Crear vector de relevancia (1 si es de la misma clase, 0 si no)
         y_true = np.array([1 if labels[j] == query_label and j != i else 0 for j in range(n)])
-        # Obtener puntuaciones de similitud
         y_score = sim[i]
         
-        # Calcular AP para esta consulta
         sorted_indices = np.argsort(-y_score)
         y_true_sorted = y_true[sorted_indices]
         
@@ -39,7 +36,7 @@ def compute_map(sim, labels):
     
     return np.mean(mAPs)
 
-if __name__ == '__main__':
+def main():
     # Cargar datos
     with open(val_file, "r+") as file: 
         files = [f.split('\t') for f in file]
@@ -109,3 +106,8 @@ if __name__ == '__main__':
         plt.tight_layout()
         plt.savefig("model_comparison.png")
         plt.show()
+        
+        
+        
+        
+main()

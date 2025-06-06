@@ -12,12 +12,10 @@ data_dir = 'VocPascal'  # Directorio de datos
 image_dir = os.path.join(data_dir, 'JPEGImages')
 list_of_images = os.path.join(data_dir, 'val_voc.txt')
 
-if __name__ == '__main__':
+def main():
     # Lectura de datos
     with open(list_of_images, "r+") as file: 
         files = [f.split('\t') for f in file]
-        
-    # Verificar GPU
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
@@ -78,3 +76,7 @@ if __name__ == '__main__':
         feat_file = os.path.join('data', f'feat_{MODEL}_{DATASET}.npy')
         np.save(feat_file, features)
         print('Características guardadas correctamente')
+        
+        
+        
+main()
